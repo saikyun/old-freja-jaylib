@@ -731,6 +731,23 @@ static Janet cfun_EndTextureMode(int32_t argc, Janet *argv) {
     return janet_wrap_nil();
 }
 
+static Janet cfun_BeginScissorMode(int32_t argc, Janet *argv) {
+    janet_fixarity(argc, 4);
+    int posX = janet_getinteger(argv, 0);
+    int posY = janet_getinteger(argv, 1);
+    int width = janet_getinteger(argv, 2);
+    int height = janet_getinteger(argv, 3);
+    BeginScissorMode(posX, posY, width, height);
+    return janet_wrap_nil();
+}
+
+static Janet cfun_EndScissorMode(int32_t argc, Janet *argv) {
+    (void) argv;
+    janet_fixarity(argc, 0);
+    EndScissorMode();
+    return janet_wrap_nil();
+}
+
 static Janet cfun_SetCameraMode(int32_t argc, Janet *argv) {
     janet_fixarity(argc, 2);
     Camera3D *camera = jaylib_getcamera3d(argv, 0);
@@ -828,6 +845,8 @@ static JanetReg core_cfuns[] = {
     {"clear-background", cfun_ClearBackground, NULL},
     {"begin-drawing", cfun_BeginDrawing, NULL},
     {"end-drawing", cfun_EndDrawing, NULL},
+    {"begin-scissor-mode", cfun_BeginScissorMode, NULL},
+    {"end-scissor-mode", cfun_EndScissorMode, NULL},
     {"begin-mode-2d", cfun_BeginMode2D, NULL},
     {"end-mode-2d", cfun_EndMode2D, NULL},
     {"set-target-fps", cfun_SetTargetFPS, NULL},
