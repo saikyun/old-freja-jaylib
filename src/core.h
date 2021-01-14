@@ -551,6 +551,13 @@ static Janet cfun_GetMousePosition(int32_t argc, Janet *argv) {
     return jaylib_wrap_vec2(pos);
 }
 
+static Janet cfun_GetScreenScale(int32_t argc, Janet *argv) {
+    (void) argv;
+    janet_fixarity(argc, 0);
+    Matrix scale = GetScreenScale();
+    return jaylib_wrap_matrix(scale);
+}
+
 static Janet cfun_SetMousePosition(int32_t argc, Janet *argv) {
     janet_fixarity(argc, 2);
     int x = janet_getinteger(argv, 0);
@@ -818,6 +825,7 @@ static JanetReg core_cfuns[] = {
     {"window-minimized?", cfun_IsWindowMinimized, NULL},
     {"window-resized?", cfun_IsWindowResized, NULL},
     {"window-hidden?", cfun_IsWindowHidden, NULL},
+    {"get-screen-scale", cfun_GetScreenScale, NULL},
     {"toggle-fullscreen", cfun_ToggleFullscreen, NULL},
     {"unhide-window", cfun_UnhideWindow, NULL},
     {"hide-window", cfun_HideWindow, NULL},

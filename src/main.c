@@ -11,7 +11,7 @@
 #include "text.h"
 #include "image.h"
 #include "3d.h"
-#include "matrix.h"
+#include "rlgl.h"
 
 JANET_MODULE_ENTRY(JanetTable *env) {
     janet_cfuns(env, "jaylib", core_cfuns);
@@ -21,5 +21,5 @@ JANET_MODULE_ENTRY(JanetTable *env) {
     janet_cfuns(env, "jaylib", text_cfuns);
     janet_cfuns(env, "jaylib", image_cfuns);
     janet_cfuns(env, "jaylib", threed_cfuns);
-    janet_cfuns(env, "jaylib", matrix_cfuns);
+    janet_cfuns(env, "jaylib", rlgl_cfuns);
 }

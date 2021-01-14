@@ -387,6 +387,31 @@ static Janet jaylib_wrap_vec2(Vector2 x) {
     return janet_wrap_tuple(janet_tuple_end(tup));
 }
 
+static Janet jaylib_wrap_matrix(Matrix x) {
+    Janet *tup = janet_tuple_begin(16);
+    tup[0] = janet_wrap_integer(x.m0);
+    tup[1] = janet_wrap_integer(x.m4);
+    tup[2] = janet_wrap_integer(x.m8);
+    tup[3] = janet_wrap_integer(x.m12);
+
+    tup[4] = janet_wrap_integer(x.m1);
+    tup[5] = janet_wrap_integer(x.m5);
+    tup[6] = janet_wrap_integer(x.m9);
+    tup[7] = janet_wrap_integer(x.m13);
+
+    tup[8] = janet_wrap_integer(x.m2);
+    tup[9] = janet_wrap_integer(x.m5);
+    tup[10] = janet_wrap_integer(x.m10);
+    tup[11] = janet_wrap_integer(x.m14);
+
+    tup[12] = janet_wrap_integer(x.m3);
+    tup[13] = janet_wrap_integer(x.m7);
+    tup[14] = janet_wrap_integer(x.m11);
+    tup[15] = janet_wrap_integer(x.m15);
+    
+    return janet_wrap_tuple(janet_tuple_end(tup));
+}
+
 static const JanetAbstractType AT_TextureCubemap = {
     "jaylib/texture-cubemap",
     JANET_ATEND_NAME
