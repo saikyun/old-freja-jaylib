@@ -11,6 +11,7 @@ static Janet cfun_rlViewport(int32_t argc, Janet *argv) {
 static const KeyDef rl_flag_defs[] = {
 				      {"rl-projection", RL_PROJECTION},
 				      {"rl-modelview", RL_MODELVIEW},
+				      				      {"watter", RL_MODELVIEW},
 				      				      {"rl-modelview", RL_MODELVIEW}
 };
 
