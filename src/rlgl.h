@@ -25,9 +25,6 @@ static Janet cfun_rlMatrixMode(int32_t argc, Janet *argv) {
       if (!janet_cstrcmp(arg_flag, rl_flag_defs[j].name)) {
 	flag = rl_flag_defs[j].key;
 	break;
-      } else {
-	printf("arg_flag %s\n", arg_flag);
-		printf("rl_flag_defs[j].name %s\n", rl_flag_defs[j].name);
       }
     }
     if (0 == flag) {
