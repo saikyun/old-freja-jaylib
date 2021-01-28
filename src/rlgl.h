@@ -15,29 +15,27 @@ static const KeyDef rl_flag_defs[] = {
 
 
 static Janet cfun_rlMatrixMode(int32_t argc, Janet *argv) {
-  janet_arity(argc, 0, -1);
-  unsigned char flags = 0;
-  for (int32_t i = 0; i < argc; i++) {
-    const uint8_t *arg_flag = janet_getkeyword(argv, i);
-    /* Linear scan through rl_flag_defs to find entry for arg_flag */
-    unsigned char flag = 0;
-    for (unsigned j = 0; j < (sizeof(rl_flag_defs) / sizeof(KeyDef)); j++) {
-      if (!janet_cstrcmp(arg_flag, rl_flag_defs[j].name)) {
+  janet_fixarity(argc, 1);
+  const uint8_t *arg_flag = janet_getkeyword(argv, 0);
+  int flag = 0;
+  for (unsigned j = 0; j < (sizeof(rl_flag_defs) / sizeof(KeyDef)); j++) {
+    if (!janet_cstrcmp(arg_flag, rl_flag_defs[j].name))
+      {
 	flag = rl_flag_defs[j].key;
 	break;
       }
-    }
-    if (0 == flag) {
-      JanetArray *available = janet_array(0);
-      for (unsigned j = 0; j < (sizeof(rl_flag_defs) / sizeof(KeyDef)); j++) {
-	janet_array_push(available, janet_ckeywordv(rl_flag_defs[j].name));
-      }
-      janet_panicf("unknown flag %v - available flags are %p", argv[i],
-		   janet_wrap_array(available));
-    }
-    flags |= flag;
   }
-  rlMatrixMode(flags);
+
+  if (0 == flag) {
+    JanetArray *available = janet_array(0);
+    for (unsigned j = 0; j < (sizeof(flag_defs) / sizeof(KeyDef)); j++) {
+      janet_array_push(available, janet_ckeywordv(flag_defs[j].name));
+    }
+    janet_panicf("unknown flag %v - available flags are %p", arg_flag,
+		 janet_wrap_array(available));
+  }
+  
+  rlMatrixMode(flag);
   return janet_wrap_nil();
 }
 
