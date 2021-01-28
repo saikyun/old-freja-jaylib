@@ -23,7 +23,7 @@ static Janet cfun_rlMatrixMode(int32_t argc, Janet *argv) {
     unsigned char flag = 0;
     for (unsigned j = 0; j < (sizeof(rl_flag_defs) / sizeof(KeyDef)); j++) {
       if (!janet_cstrcmp(arg_flag, rl_flag_defs[j].name)) {
-	flag = (unsigned char) rl_flag_defs[j].key;
+	flag = rl_flag_defs[j].key;
 	break;
       } else {
 	printf("arg_flag %s\n", arg_flag);
