@@ -472,8 +472,10 @@ static Janet cfun_DrawRenderTextureRec(int32_t argc, Janet *argv) {
 
 static Janet cfun_GetRenderTexture(int32_t argc, Janet *argv) {
     janet_fixarity(argc, 1);
-    RenderTexture texture = *jaylib_getrendertexture(argv, 0);
-    return janet_wrap_abstract(&texture.texture);
+    RenderTexture render_texture = *jaylib_getrendertexture(argv, 0);
+    Texture2D *texture = janet_abstract(&AT_Texture2D, sizeof(Texture2D));
+    *texture = render_texture.texture;
+    return janet_wrap_abstract(texture);
 }
 
 
