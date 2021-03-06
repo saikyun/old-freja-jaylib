@@ -1,7 +1,7 @@
 (use ../build/jaylib)
 
 (set-config-flags
-  :msaa-4x-hint)
+ :msaa-4x-hint)
 
 (init-window 800 600 "In game repl")
 (set-target-fps 60)
@@ -54,7 +54,7 @@
         (++ debounce)
         (set debounce 0))
       (or (key-pressed? key) (and (> debounce 32) (even? debounce)))))
-
+  
   (def enter? (key-checker :enter))
   (def bs? (key-checker :backspace))
   (def right? (key-checker :right))

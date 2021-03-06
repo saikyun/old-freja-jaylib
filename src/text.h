@@ -41,7 +41,7 @@ static Janet cfun_LoadFontEx(int32_t argc, Janet *argv) {
         raw_ints[i] = janet_getinteger(ints.items, i);
     }
     Font *font = janet_abstract(&AT_Font, sizeof(Font));
-    *font = LoadFontEx(fileName, fontSize, raw_ints, ints.len);
+    *font = LoadFontEx(fileName, fontSize, 0, 250);
     janet_sfree(raw_ints);
     return janet_wrap_abstract(font);
 }

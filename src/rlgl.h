@@ -48,12 +48,12 @@ static Janet cfun_rlLoadIdentity(int32_t argc, Janet *argv) {
 
 static Janet cfun_rlOrtho(int32_t argc, Janet *argv) {
   janet_fixarity(argc, 6);
-  int left = (float) janet_getnumber(argv, 0);
-  int right = (float) janet_getnumber(argv, 1);
-  int bottom = (float) janet_getnumber(argv, 2);
-  int top = (float) janet_getnumber(argv, 3);
-  int znear = (float) janet_getnumber(argv, 4);
-  int zfar = (float) janet_getnumber(argv, 5);
+  float left = (float) janet_getnumber(argv, 0);
+  float right = (float) janet_getnumber(argv, 1);
+  float bottom = (float) janet_getnumber(argv, 2);
+  float top = (float) janet_getnumber(argv, 3);
+  float znear = (float) janet_getnumber(argv, 4);
+  float zfar = (float) janet_getnumber(argv, 5);
   rlOrtho(left, right, bottom, top, znear, zfar);
   return janet_wrap_nil();
 }
@@ -82,6 +82,14 @@ static Janet cfun_rlScissor(int32_t argc, Janet *argv) {
   return janet_wrap_nil();
 }
 
+
+static Janet cfun_rlMultMatrixfScreenScale(int32_t argc, Janet *argv) {
+  (void) argv;
+  janet_fixarity(argc, 0);
+  rlMultMatrixf(MatrixToFloat(GetScreenScale())); // Apply screen scaling
+  return janet_wrap_nil();
+}
+
 static JanetReg rlgl_cfuns[] = {
 				{"rl-viewport", cfun_rlViewport, NULL},
 				{"rl-matrix-mode", cfun_rlMatrixMode, NULL},
@@ -90,5 +98,6 @@ static JanetReg rlgl_cfuns[] = {
 				{"rlgl-draw", cfun_rlglDraw, NULL},
 				{"rl-enable-scissor-test", cfun_rlEnableScissorTest, NULL},
 				{"rl-scissor", cfun_rlScissor, NULL},
+				{"rl-mult-matrixf-screen-scale", cfun_rlMultMatrixfScreenScale, NULL},
 				{NULL, NULL, NULL}
 };
