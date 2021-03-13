@@ -82,6 +82,19 @@ static Janet cfun_rlScissor(int32_t argc, Janet *argv) {
   return janet_wrap_nil();
 }
 
+static Janet cfun_rlPushMatrix(int32_t argc, Janet *argv) {
+  (void) argv;
+  janet_fixarity(argc, 0);
+  rlPushMatrix();
+  return janet_wrap_nil();
+}
+
+static Janet cfun_rlPopMatrix(int32_t argc, Janet *argv) {
+  (void) argv;
+  janet_fixarity(argc, 0);
+  rlPopMatrix();
+  return janet_wrap_nil();
+}
 
 static Janet cfun_rlMultMatrixfScreenScale(int32_t argc, Janet *argv) {
   (void) argv;
@@ -94,6 +107,8 @@ static JanetReg rlgl_cfuns[] = {
 				{"rl-viewport", cfun_rlViewport, NULL},
 				{"rl-matrix-mode", cfun_rlMatrixMode, NULL},
 				{"rl-ortho", cfun_rlOrtho, NULL},
+				{"rl-push-matrix", cfun_rlPushMatrix, NULL},
+				{"rl-pop-matrix", cfun_rlPopMatrix, NULL},
 				{"rl-load-identity", cfun_rlLoadIdentity, NULL},
 				{"rlgl-draw", cfun_rlglDraw, NULL},
 				{"rl-enable-scissor-test", cfun_rlEnableScissorTest, NULL},
