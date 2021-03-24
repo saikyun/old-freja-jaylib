@@ -44,7 +44,7 @@ typedef struct {
 /* Keep KeyDef arrays sorted */
 
 static const KeyDef key_defs[] = {
-  {"null", 0}, // should be KEY_NULL
+  //{"null", 0}, // should be KEY_NULL
     {"'", KEY_APOSTROPHE},
     {",", KEY_COMMA},
     {"-", KEY_MINUS},
